@@ -1,0 +1,8 @@
+{
+  "__comment__": "possible structure of a message form client to server",
+  "type": "here put CS to mean message from Clinet to Server or SC form Server to Client",
+  "from": "here put username or the nema of the game is better use id or username?",
+  "to": "here put username or the nema of the game",
+  "messageNumber": "here the number of the type seeing the file of constant and to the route say from 1 to 3 to forward to SelectionController for exsample",
+  "body": "here put the body of the message for exsample array of selection, and others"
+}

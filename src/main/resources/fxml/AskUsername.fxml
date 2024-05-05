@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="pane2" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.Scene.ControllerAskUsername">
+   <center>
+      <Group BorderPane.alignment="CENTER">
+         <children>
+            <StackPane prefHeight="400.0" prefWidth="603.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                              <Text fill="WHITE" layoutX="165.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select your username:" textAlignment="CENTER" wrappingWidth="281.255859375">
+                                  <font>
+                                      <Font size="25.0" />
+                                  </font>
+                              </Text>
+                              <TextField fx:id="textUsername" alignment="CENTER" layoutX="233.0" layoutY="85.0" prefHeight="25.0" prefWidth="146.0" promptText="Put your username here" style="-fx-background-color: transparent; -fx-text-fill: white;">
+            </TextField>
+                              <Button alignment="CENTER" layoutX="223.0" layoutY="148.0" mnemonicParsing="false" onAction="#enter" prefHeight="39.0" prefWidth="165.0" text="Enter" textAlignment="CENTER">
+            </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+         </children></Group>
+   </center>
+</BorderPane>

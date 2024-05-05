@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="paneGeneral" prefHeight="403.0" prefWidth="622.0" styleClass="paneGeneral" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.Scene.ControllerMenu">
+   <right>
+      <Pane prefHeight="403.0" prefWidth="127.0" styleClass="pane2" stylesheets="@../css/Style.css" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER" layoutX="27.0" layoutY="32.0" mnemonicParsing="false" onAction="#startGame" prefHeight="36.0" prefWidth="74.0" styleClass="Button" stylesheets="@../css/Style.css" text="Start" />
+            <Button alignment="CENTER" layoutX="27.0" layoutY="87.0" mnemonicParsing="false" onAction="#exit" prefHeight="36.0" prefWidth="74.0" styleClass="Button" stylesheets="@../css/Style.css" text="Exit" />
+         </children>
+      </Pane>
+   </right>
+   <center>
+      <Pane fx:id="paneLeft" prefHeight="403.0" prefWidth="523.0" styleClass="pane" stylesheets="@../css/Style.css" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

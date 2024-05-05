@@ -1,0 +1,187 @@
+Connection established
+p
+INVIO: {"messageNumber":0,"body":{"data":"p"}}
+{"messageNumber":3,"body":{"data":"OK GOOD_USERNAME"}}
+{"messageNumber":3,"body":{"data":"OK YOU_CAN_CREATE_GAME"}}
+{"messageNumber":13,"body":{"data":2}}
+INVIO: {"messageNumber":13,"body":{"data":2}}
+{"messageNumber":3,"body":{"data":"OK VALID"}}
+{"messageNumber":3,"body":{"data":"OK YOU_ADDED_TO_GAME"}}
+{"messageNumber":5,"body":{"data":[[null,null,null,null,null,null,null,null,null],[null,null,null,{"color":0,"id":5},{"color":0,"id":12},null,null,null,null],[null,null,null,{"color":4,"id":107},{"color":4,"id":89},{"color":4,"id":108},null,null,null],[null,null,{"color":5,"id":115},{"color":2,"id":57},{"color":3,"id":77},{"color":0,"id":18},{"color":5,"id":119},{"color":4,"id":98},null],[null,{"color":5,"id":122},{"color":3,"id":69},{"color":2,"id":49},{"color":3,"id":76},{"color":3,"id":87},{"color":3,"id":75},{"color":2,"id":62},null],[null,{"color":3,"id":74},{"color":5,"id":126},{"color":1,"id":37},{"color":1,"id":39},{"color":2,"id":44},{"color":0,"id":19},null,null],[null,null,null,{"color":4,"id":106},{"color":2,"id":60},{"color":0,"id":3},null,null,null],[null,null,null,null,{"color":0,"id":15},{"color":3,"id":79},null,null,null],[null,null,null,null,null,null,null,null,null]],"dim":2,"lengthI":9,"lengthJ":9}}
+{"messageNumber":6,"body":{"data":1}}
+{"messageNumber":7,"body":{"data":8}}
+{"messageNumber":7,"body":{"data":2}}
+{"messageNumber":3,"body":{"data":"It's your turn"}}
+{"messageNumber":1,"body":{"data":[{"i":1,"j":3},{"i":1,"j":4}],"dim":1,"length":2}}
+INVIO: {"messageNumber":1,"body":{"data":[{"i":1,"j":3},{"i":1,"j":4}],"dim":1,"length":2}}
+{"messageNumber":5,"body":{"data":[[null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null],[null,null,null,{"color":4,"id":107},{"color":4,"id":89},{"color":4,"id":108},null,null,null],[null,null,{"color":5,"id":115},{"color":2,"id":57},{"color":3,"id":77},{"color":0,"id":18},{"color":5,"id":119},{"color":4,"id":98},null],[null,{"color":5,"id":122},{"color":3,"id":69},{"color":2,"id":49},{"color":3,"id":76},{"color":3,"id":87},{"color":3,"id":75},{"color":2,"id":62},null],[null,{"color":3,"id":74},{"color":5,"id":126},{"color":1,"id":37},{"color":1,"id":39},{"color":2,"id":44},{"color":0,"id":19},null,null],[null,null,null,{"color":4,"id":106},{"color":2,"id":60},{"color":0,"id":3},null,null,null],[null,null,null,null,{"color":0,"id":15},{"color":3,"id":79},null,null,null],[null,null,null,null,null,null,null,null,null]],"dim":2,"lengthI":9,"lengthJ":9}}
+{"messageNumber":4,"body":{"data":[{"color":0,"id":5},{"color":0,"id":12}],"length":2,"dim":1}}
+{"messageNumber":2,"body":{"data":[{"color":0,"id":5},{"color":0,"id":12}],"dim":1,"length":2, "column":0}}
+INVIO: {"messageNumber":2,"body":{"data":[{"color":0,"id":5},{"color":0,"id":12}],"dim":1,"length":2, "column":0}}
+{"messageNumber":8,"body":{"data":[[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null],[{"color":0,"id":12},null,null,null,null],[{"color":0,"id":5},null,null,null,null]],"dim":2,"lengthI":6,"lengthJ":5}}
+{"messageNumber":3,"body":{"data":"true"}}
+{"messageNumber":3,"body":{"data":"KO NO_COMMON_POINTS"}}
+{"messageNumber":3,"body":{"data":"KO NO_POINT_FIRST"}}
+{"messageNumber":3,"body":{"data":"KO NO_REFILL"}}
+
+-- SERIALIZZAZIONE --
+
+Flusso dei messaggi
+qui di seguito il punto di vista è quello del server quindi input sono quei messaggio da client verso server ed output il viceversa
+
+descrivo quale messaggio viene mandato rispetto ad un input
+
+addUserMessage -> ResponseUsernameMessage (OK o KO)
+    anche nel caso di creazione di avvio della partita
+               -> MatrixMessage (board updated)
+               -> IntMessage (id of common and personal cards)
+CreateGame (solo da 1) -> StringMessage
+    anche nel caso di creazione di avvio della partita
+                   -> MatrixMessage (board updated)
+                   -> IntMessage (id of common and personal cards)
+TakeCardsMessage -> ListMonoMessage
+PutTilesInBookShelfMessage -> StringMessage
+    fine del turno:
+                -> StringMessage
+                -> FinalPointMessage
+                -> PointFinishedMessage
+
+QUINDI QUELLI CHE SONO ALLA DESTRA DELLA FRECCIA DOVRANNO AVERE IL VISITOR PER IL LATO CLIENT
+QUELLI ALLA SINISTRA DELLE FRECCE HANNO IL VISITOR LATO SERVER
+
+-- DOCUMENTAZIONE: --
+
+Metodi chiamati da Client verso Server:
+1) addUser():
+    INVIO: {"messageNumber":0,"body":{"data":"username"}}
+
+    controllo esistenza dello username all'interno della lobby (se non già creato il game) se no nell'users  del game stesso
+
+    valori di ritorno:
+        -> tutto bene:
+            - messageNumber: RETURN_STRING data: OK GOOD_USERNAME
+                {"messageNumber":3,"from":0,"to":0,"type":"SC","body":{"data":"OK GOOD_USERNAME"}}
+
+            se game non ancora creato:
+
+                nessuno ha il privilegio di creare il game:
+                   - messageNumber: RETURN_STRING data: OK YOU_CAN_CREATE_GAME
+
+                qualcuno ha già il privilegio:
+                   - messageNumber: RETURN_STRING data: OK IN_LOBBY
+
+            se game già creato:
+                -> controllo username:
+                    se utente ha unico username:
+                        - messageNumber: RETURN_STRING data: OK GOOD_USERNAME
+
+                    se utente usa username già usato:
+                        - messageNumber: RETURN_STRING data: KO ALREADY_USERNAME_USED
+
+                -> arriva se il numero di giocatori NON è arrivato al limite:
+                    - messageNumber: RETURN_STRING data: KO YOU_CAN_NOT_CREATE_GAME
+
+                se il numero di giocatori è già arrivato al limite:
+                    - messageNumber: RETURN_STRING data: KO OVER_LIMIT_PLAYER
+
+
+
+        -> errore:
+               - messageNumber: RETURN_STRING data: KO ALREADY_USERNAME_USED
+               - messageNumber: RETRUN_STRING data: KO OVER_LIMIT_PLAYER
+
+            -> controllo start game -> startGame():
+
+                -> partenza del game:
+                    -> tutto bene:
+                        - messageNumber: RETURN_BOARD data: arraylist di Tile della board creata
+                            {"messageNumber":5,"from":5,"to":-1,"type":"SC","body":{"data":[[null,null,null,null,null,null,null,null,null],[null,null,null,{"color":"Y","id":63},{"color":"B","id":78},null,null,null,null],[null,null,null,{"color":"P","id":124},{"color":"P","id":122},{"color":"A","id":88},null,null,null],[null,null,{"color":"Y","id":58},{"color":"P","id":129},{"color":"P","id":110},{"color":"B","id":75},{"color":"W","id":29},{"color":"G","id":15},null],[null,{"color":"Y","id":52},{"color":"W","id":40},{"color":"P","id":119},{"color":"P","id":117},{"color":"P","id":116},{"color":"G","id":16},{"color":"A","id":92},null],[null,{"color":"A","id":95},{"color":"P","id":128},{"color":"P","id":115},{"color":"W","id":25},{"color":"P","id":111},{"color":"G","id":2},null,null],[null,null,null,{"color":"B","id":73},{"color":"B","id":66},{"color":"P","id":130},null,null,null],[null,null,null,null,{"color":"W","id":43},{"color":"W","id":41},null,null,null],[null,null,null,null,null,null,null,null,null]],"dim":2,"lengthI":9,"lengthJ":9}}
+
+                        - messageNumber: RETURN_ID_PERSONAL_CARDS data: id della personal card all'utente
+                               {"messageNumber":6,"from":0,"to":0,"type":"SC","body":{"data":1}}
+
+                        - messageNumber: RETURN_ID_COMMON_CARDS data: id della common card BROADCAST
+                                {"messageNumber":7,"from":0,"to":-1,"type":"SC","body":{"data":3}}
+                                {"messageNumber":7,"from":0,"to":-1,"type":"SC","body":{"data":8}}
+
+                        - messageNumber: RETURN_STRING data: "it's your turn" UTENTE
+                                -> mandare agli'altri con scritto che tocca all'altro utente
+                -> errore:
+                     - messageNumber: RETURN_STRING data: NON POTEVA FAR PARTIRE LA PARTITA ERROR INTERNO AL SERVER
+
+4) createGame():
+    INVIO: {"messageNumber":13,"body":{"data":2}}
+
+    qui si manda il numero di giocatori che si vorrebbe avere nel game
+    una volta inserito vengono inseriti i giocatori che sono nella lobby nel game in abase all'ordine di entrata
+
+    valori di ritorno:
+        1) se il numero di giocatori NON è conforme alle regole: (dopo questo blocca la creazione)
+           - messageNumber: RETURN_STRING data: KO NOT_VALID
+
+        se il numero di giocatori è conforme alle regole: (dopo questo prosegue con la creazione)
+           - messageNumber: RETURN_STRING data: OK VALID
+
+        2) se creazione riuscita del game:
+                - messageNumber: RETURN_STRING data: OK CREATED_GAME (al creatore del game)
+
+           altrimenti:
+                - messageNumber: RETURN_STRING data: KO ALREADY_GAME_CREATED (al singolo creatore del game e finisce li la funzione)
+
+        3) a tutti quelli in lobby e al creatore del game:
+                se il numero del game non superato: (diretto al singolo utente NO broadcast)
+                    - messageNumber: RETURN_STRING data: OK YOU_ADDED_TO_GAME
+                se il numero del game è stato superato: (diretto al singolo utente NO broadcast)
+                    - messageNumber: RETURN_STRING data: KO OVER_LIMIT_PLAYER
+
+                    -> in questo caso l'utente viene rimosso dalla hashmap delle socket e viene chiusa la usa socket
+
+        4) controllo start per far partire il game:
+            startgame() (vedere sopra)
+
+3) takeCards():
+    INVIO: {"messageNumber":1,"from":0,"to":0,"type":"CS","body":{"data":[{"i":1,"j":3},{"i":1,"j":4}],"dim":1,"length":2}}
+
+    invio delle selezioni da parte del client da far controllare al server
+
+    valori di ritorno:
+        -> tutto bene:
+            - messageNumber: RETURN_BOARD data: list dei TIle della nuova board BROADCAST
+                    {"messageNumber":5,"from":5,"to":-1,"type":"SC","body":{"data":[[null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null],[null,null,null,{"color":"P","id":124},{"color":"P","id":122},{"color":"A","id":88},null,null,null],[null,null,{"color":"Y","id":58},{"color":"P","id":129},{"color":"P","id":110},{"color":"B","id":75},{"color":"W","id":29},{"color":"G","id":15},null],[null,{"color":"Y","id":52},{"color":"W","id":40},{"color":"P","id":119},{"color":"P","id":117},{"color":"P","id":116},{"color":"G","id":16},{"color":"A","id":92},null],[null,{"color":"A","id":95},{"color":"P","id":128},{"color":"P","id":115},{"color":"W","id":25},{"color":"P","id":111},{"color":"G","id":2},null,null],[null,null,null,{"color":"B","id":73},{"color":"B","id":66},{"color":"P","id":130},null,null,null],[null,null,null,null,{"color":"W","id":43},{"color":"W","id":41},null,null,null],[null,null,null,null,null,null,null,null,null]],"dim":2,"lengthI":9,"lengthJ":9}}
+
+             - messageNumber: RETURN_LIST_SELECTION data: lista delle selzioni  UTENTE
+                    {"messageNumber":4,"from":0,"to":0,"type":"SC","body":{"data":[{"color":"Y","id":63},{"color":"B","id":78}],"length":2,"dim":1}}
+
+        -> errori:
+             - messageNumber: RETRUN_STRING data: "RETURN NULL FROM LIST TILE"
+
+4) putTilesInBookshelf():
+      INVIO: {"messageNumber":2,"from":0,"to":0,"type":"CS","body":{"data":[{"color":1,"id":78},{"color":2,"id":63}],"dim":1,"length":2, "column":0}}
+
+      invio delle tile con l'ordine scelto dall'utente
+
+      valori di ritorno:
+              -> tutto bene:
+                    - messageNumber: RETRUN_STRING data: bookshelf aggiornata al UTENTE
+                         {"messageNumber":8,"from":8,"to":0,"type":"SC","body":{"data":[[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null],[{"color":"Y","id":63},null,null,null,null],[{"color":"B","id":78},null,null,null,null]],"dim":2,"lengthI":6,"lengthJ":5}}
+
+                    - messageNumber: RETURN_STRING data: true (quindi selezione andata tutto bene)
+                        {"messageNumber":3,"from":0,"to":0,"type":"SC","body":{"data":"true"}}
+
+                    - messaggi di fine turno:
+
+                        KO NO_COMMON_POINTS
+                        KO NO_POINT_FIRST
+                        KO NO_REFILL
+
+                        poi manda all'utente dopo "it's your turn" e agli'altri torna è turno di quel utente
+
+                    - fine game:
+                        "GAME CONCLUSO"
+                        
+             -> errori:
+                   - messageNumber: RETRUN_STRING data: "NON SONO UGUALI"
+                   - messageNumber: RETRUN_STRING data: "NON HAI FATTO UNA SELEZIONE PRIMA"
+                   - messageNumber: RETRUN_STRING data: "NON HAI SPAZIO IN BOOKSHELF IN QUELLA COLONNA"
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" styleClass="pane2" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.Scene.ControllerAskNumberOfPlayers">
+   <center>
+      <Group BorderPane.alignment="CENTER">
+         <StackPane prefHeight="359.0" prefWidth="586.0">
+            <AnchorPane prefHeight="400.0" prefWidth="586.0">
+               <Text fill="WHITE" layoutX="25.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You are the Admin, select the number of players:" textAlignment="CENTER">
+                  <font>
+                     <Font size="25.0" />
+                  </font>
+               </Text>
+               <ChoiceBox id="numberOfPlayers" fx:id="numberOfPlayers" layoutX="218.0" layoutY="64.0" prefWidth="150.0" />
+               <Button layoutX="224.0" layoutY="127.0" mnemonicParsing="false" onAction="#Enter" prefHeight="45.0" prefWidth="138.0" text="Enter" />
+            </AnchorPane>
+         </StackPane>
+      </Group>
+   </center>
+</BorderPane>

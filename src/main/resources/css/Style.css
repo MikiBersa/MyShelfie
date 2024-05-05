@@ -1,0 +1,32 @@
+.pane{
+    -fx-background-image: url("images/Display_1.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100% 100%;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+.pane2{
+    -fx-background-image: url("images/base_pagina.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100% 100%;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+.text-field {
+    -fx-background-color: transparent;
+}
+
+.text-field.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-field.scroll-pane.viewport{
+    -fx-background-color: transparent;
+}
+
+
+.text-field.scroll-pane.content{
+    -fx-background-color: transparent;
+}

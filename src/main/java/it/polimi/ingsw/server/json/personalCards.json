@@ -1,0 +1,390 @@
+{
+  "__comment__": "list of personalCards each position is connected to teh posiiton number of personalCards in the image folder",
+  "number": 12,
+  "data": [
+      [
+        {
+          "row": 0,
+          "column": 0,
+          "color": "PINK"
+        },
+        {
+          "row": 0,
+          "column": 2,
+          "color": "DARK_BLUE"
+        },
+        {
+          "row": 1,
+          "column": 4,
+          "color": "GREEN"
+        },
+        {
+          "row": 2,
+          "column": 3,
+          "color": "WHITE"
+        },
+        {
+          "row": 3,
+          "column": 1,
+          "color": "YELLOW"
+        },
+        {
+          "row": 5,
+          "column": 2,
+          "color": "LIGHT_BLUE"
+        }
+      ],
+      [
+        {
+          "row": 1,
+          "column": 1,
+          "color": "PINK"
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "color": "GREEN"
+        },
+        {
+          "row": 2,
+          "column": 2,
+          "color": "YELLOW"
+        },
+        {
+          "row": 3,
+          "column": 4,
+          "color": "WHITE"
+        },
+        {
+          "row": 4,
+          "column": 3,
+          "color": "LIGHT_BLUE"
+        },
+        {
+          "row": 5,
+          "column": 4,
+          "color": "DARK_BLUE"
+        }
+      ],
+      [
+        {
+          "row": 1,
+          "column": 0,
+          "color": "DARK_BLUE"
+        },
+        {
+          "row": 1,
+          "column": 3,
+          "color": "YELLOW"
+        },
+        {
+          "row": 2,
+          "column": 2,
+          "color": "PINK"
+        },
+        {
+          "row": 3,
+          "column": 1,
+          "color": "GREEN"
+        },
+        {
+          "row": 3,
+          "column": 4,
+          "color": "LIGHT_BLUE"
+        },
+        {
+          "row": 5,
+          "column": 0,
+          "color": "WHITE"
+        }
+      ],
+      [
+        {
+          "row": 0,
+          "column": 4,
+          "color": "YELLOW"
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "color": "LIGHT_BLUE"
+        },
+        {
+          "row": 2,
+          "column": 2,
+          "color": "DARK_BLUE"
+        },
+        {
+          "row": 3,
+          "column": 3,
+          "color": "PINK"
+        },
+        {
+          "row": 4,
+          "column": 1,
+          "color": "WHITE"
+        },
+        {
+          "row": 4,
+          "column": 2,
+          "color": "GREEN"
+        }
+      ],
+      [
+        {
+          "row": 1,
+          "column": 1,
+          "color": "LIGHT_BLUE"
+        },
+        {
+          "row": 3,
+          "column": 1,
+          "color": "DARK_BLUE"
+        },
+        {
+          "row": 3,
+          "column": 2,
+          "color": "WHITE"
+        },
+        {
+          "row": 4,
+          "column": 4,
+          "color": "PINK"
+        },
+        {
+          "row": 5,
+          "column": 0,
+          "color": "YELLOW"
+        },
+        {
+          "row": 5,
+          "column": 3,
+          "color": "GREEN"
+        }
+      ],
+      [
+        {
+          "row": 0,
+          "column": 2,
+          "color": "LIGHT_BLUE"
+        },
+        {
+          "row": 0,
+          "column": 4,
+          "color": "GREEN"
+        },
+        {
+          "row": 2,
+          "column": 3,
+          "color": "WHITE"
+        },
+        {
+          "row": 4,
+          "column": 1,
+          "color": "YELLOW"
+        },
+        {
+          "row": 4,
+          "column": 3,
+          "color": "DARK_BLUE"
+        },
+        {
+          "row": 5,
+          "column": 0,
+          "color": "PINK"
+        }
+      ],
+      [
+        {
+          "row": 0,
+          "column": 0,
+          "color": "GREEN"
+        },
+        {
+          "row": 1,
+          "column": 3,
+          "color": "DARK_BLUE"
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "color": "PINK"
+        },
+        {
+          "row": 3,
+          "column": 0,
+          "color": "LIGHT_BLUE"
+        },
+        {
+          "row": 4,
+          "column": 4,
+          "color": "YELLOW"
+        },
+        {
+          "row": 5,
+          "column": 2,
+          "color": "WHITE"
+        }
+      ],
+      [
+        {
+          "row": 0,
+          "column": 4,
+          "color": "DARK_BLUE"
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "color": "GREEN"
+        },
+        {
+          "row": 2,
+          "column": 2,
+          "color": "LIGHT_BLUE"
+        },
+        {
+          "row": 3,
+          "column": 0,
+          "color": "PINK"
+        },
+        {
+          "row": 4,
+          "column": 3,
+          "color": "WHITE"
+        },
+        {
+          "row": 5,
+          "column": 3,
+          "color": "YELLOW"
+        }
+      ],
+      [
+        {
+          "row": 0,
+          "column": 2,
+          "color": "YELLOW"
+        },
+        {
+          "row": 2,
+          "column": 2,
+          "color": "GREEN"
+        },
+        {
+          "row": 3,
+          "column": 4,
+          "color": "WHITE"
+        },
+        {
+          "row": 4,
+          "column": 1,
+          "color": "LIGHT_BLUE"
+        },
+        {
+          "row": 4,
+          "column": 4,
+          "color": "PINK"
+        },
+        {
+          "row": 5,
+          "column": 0,
+          "color": "DARK_BLUE"
+        }
+      ],
+      [
+        {
+          "row": 0,
+          "column": 4,
+          "color": "LIGHT_BLUE"
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "color": "YELLOW"
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "color": "WHITE"
+        },
+        {
+          "row": 3,
+          "column": 3,
+          "color": "GREEN"
+        },
+        {
+          "row": 4,
+          "column": 1,
+          "color": "DARK_BLUE"
+        },
+        {
+          "row": 5,
+          "column": 3,
+          "color": "PINK"
+        }
+      ],
+      [
+        {
+          "row": 0,
+          "column": 2,
+          "color": "PINK"
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "color": "WHITE"
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "color": "YELLOW"
+        },
+        {
+          "row": 3,
+          "column": 2,
+          "color": "DARK_BLUE"
+        },
+        {
+          "row": 4,
+          "column": 4,
+          "color": "GREEN"
+        },
+        {
+          "row": 5,
+          "column": 3,
+          "color": "LIGHT_BLUE"
+        }
+      ],
+      [
+        {
+          "row": 0,
+          "column": 2,
+          "color": "WHITE"
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "color": "PINK"
+        },
+        {
+          "row": 2,
+          "column": 2,
+          "color": "DARK_BLUE"
+        },
+        {
+          "row": 3,
+          "column": 3,
+          "color": "LIGHT_BLUE"
+        },
+        {
+          "row": 4,
+          "column": 4,
+          "color": "YELLOW"
+        },
+        {
+          "row": 5,
+          "column": 0,
+          "color": "GREEN"
+        }
+      ]
+    ]
+}
